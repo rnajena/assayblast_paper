@@ -1,0 +1,5 @@
+Genome	Probe	Amplification	Pairing and Strand direction ((+)/(-))	Strand direction	Strand check	Mismatch	Distance	Location
+CP102956	probe_lukF_10	lin	probe_lukF_10 (+),primer_lukF_11b (-)	+-	pass	M0,0	D3	1942420:1942445:+,1942449:1942466:-
+CP102957	probe_lukF_10	lin	primer_lukF_11b (+),probe_lukF_10 (-)	+-	pass	M0,0	D3	2204112:2204129:+,2204133:2204158:-
+CP102958	probe_entN_11	lin	probe_entN_11 (+),primer_entN_51 (-)	+-	pass	M0,0	D7	184157:184181:+,184189:184210:-
+CP102958	probe_lukF_10	lin	primer_lukF_11b (+),probe_lukF_10 (-)	+-	pass	M0,0	D3	2344146:2344163:+,2344167:2344192:-
