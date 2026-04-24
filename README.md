@@ -6,7 +6,7 @@ Accession numbers can be found in `data/organisms.json` and `assay/microarray_re
 
 Prerequisites: conda installation using conda-forge and bioconda channels.
 
-First please install the necessary packages:
+First, please install the necessary packages:
 
 ```bash
 conda create -n assayblast_paper "python=3.14" "blast=2.17.0" matplotlib numpy pandas seaborn scipy "biopython=1.85"
