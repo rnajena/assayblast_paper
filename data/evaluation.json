@@ -1,0 +1,674 @@
+{
+  "header": [
+    "organism",
+    "plen",
+    "mismatch",
+    "version",
+    "success",
+    "nhits",
+    "time",
+    "evalue"
+  ],
+  "rows": [
+    [
+      "Influenzavirus A",
+      10,
+      0,
+      "v2",
+      true,
+      1,
+      0.26,
+      2.5
+    ],
+    [
+      "Influenzavirus A",
+      10,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      0.5,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      10,
+      0,
+      "v1",
+      true,
+      1,
+      0.43,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      10,
+      2,
+      "v2",
+      true,
+      10,
+      0.22,
+      79.0
+    ],
+    [
+      "Influenzavirus A",
+      10,
+      2,
+      "v1_e1k",
+      true,
+      1,
+      0.42,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      10,
+      2,
+      "v1",
+      true,
+      1,
+      0.44,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      20,
+      0,
+      "v2",
+      true,
+      1,
+      0.23,
+      0.00035
+    ],
+    [
+      "Influenzavirus A",
+      20,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      0.57,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      20,
+      0,
+      "v1",
+      true,
+      1,
+      0.45,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      20,
+      2,
+      "v2",
+      true,
+      1,
+      0.21,
+      0.011
+    ],
+    [
+      "Influenzavirus A",
+      20,
+      2,
+      "v1_e1k",
+      true,
+      1,
+      0.42,
+      null
+    ],
+    [
+      "Influenzavirus A",
+      20,
+      2,
+      "v1",
+      true,
+      1,
+      0.41,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      10,
+      0,
+      "v2",
+      true,
+      93,
+      0.27,
+      550.0
+    ],
+    [
+      "Staphylococcus aureus",
+      10,
+      0,
+      "v1_e1k",
+      true,
+      93,
+      0.52,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      10,
+      0,
+      "v1",
+      true,
+      93,
+      0.98,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      10,
+      2,
+      "v2",
+      true,
+      3732,
+      0.76,
+      17000.0
+    ],
+    [
+      "Staphylococcus aureus",
+      10,
+      2,
+      "v1_e1k",
+      true,
+      93,
+      0.46,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      10,
+      2,
+      "v1",
+      true,
+      840,
+      1.02,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      20,
+      0,
+      "v2",
+      true,
+      1,
+      0.31,
+      0.076
+    ],
+    [
+      "Staphylococcus aureus",
+      20,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      0.63,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      20,
+      0,
+      "v1",
+      true,
+      1,
+      2.36,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      20,
+      2,
+      "v2",
+      true,
+      1,
+      0.25,
+      2.4
+    ],
+    [
+      "Staphylococcus aureus",
+      20,
+      2,
+      "v1_e1k",
+      true,
+      1,
+      0.56,
+      null
+    ],
+    [
+      "Staphylococcus aureus",
+      20,
+      2,
+      "v1",
+      true,
+      1,
+      2.4,
+      null
+    ],
+    [
+      "Candida albicans",
+      10,
+      0,
+      "v2",
+      true,
+      193,
+      0.3,
+      2700.0
+    ],
+    [
+      "Candida albicans",
+      10,
+      0,
+      "v1_e1k",
+      false,
+      0,
+      0.45,
+      null
+    ],
+    [
+      "Candida albicans",
+      10,
+      0,
+      "v1",
+      true,
+      193,
+      1.25,
+      null
+    ],
+    [
+      "Candida albicans",
+      10,
+      2,
+      "v2",
+      true,
+      6363,
+      1.08,
+      84000.0
+    ],
+    [
+      "Candida albicans",
+      10,
+      2,
+      "v1_e1k",
+      false,
+      0,
+      0.44,
+      null
+    ],
+    [
+      "Candida albicans",
+      10,
+      2,
+      "v1",
+      true,
+      1354,
+      1.25,
+      null
+    ],
+    [
+      "Candida albicans",
+      20,
+      0,
+      "v2",
+      true,
+      1,
+      0.23,
+      0.37
+    ],
+    [
+      "Candida albicans",
+      20,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      0.89,
+      null
+    ],
+    [
+      "Candida albicans",
+      20,
+      0,
+      "v1",
+      true,
+      1,
+      6.75,
+      null
+    ],
+    [
+      "Candida albicans",
+      20,
+      2,
+      "v2",
+      true,
+      4,
+      0.25,
+      12.0
+    ],
+    [
+      "Candida albicans",
+      20,
+      2,
+      "v1_e1k",
+      true,
+      3,
+      0.57,
+      null
+    ],
+    [
+      "Candida albicans",
+      20,
+      2,
+      "v1",
+      true,
+      4,
+      6.82,
+      null
+    ],
+    [
+      "Candida albicans",
+      50,
+      0,
+      "v2",
+      true,
+      1,
+      0.26,
+      3e-13
+    ],
+    [
+      "Candida albicans",
+      50,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      1.99,
+      null
+    ],
+    [
+      "Candida albicans",
+      50,
+      0,
+      "v1",
+      true,
+      1,
+      62.21,
+      null
+    ],
+    [
+      "Candida albicans",
+      50,
+      2,
+      "v2",
+      true,
+      1,
+      0.28,
+      9.6e-12
+    ],
+    [
+      "Candida albicans",
+      50,
+      2,
+      "v1_e1k",
+      true,
+      1,
+      1.96,
+      null
+    ],
+    [
+      "Candida albicans",
+      50,
+      2,
+      "v1",
+      true,
+      1,
+      62.26,
+      null
+    ],
+    [
+      "Homo sapiens",
+      10,
+      0,
+      "v2",
+      true,
+      7531,
+      2.55,
+      580000.0
+    ],
+    [
+      "Homo sapiens",
+      10,
+      0,
+      "v1_e1k",
+      false,
+      0,
+      3.5,
+      null
+    ],
+    [
+      "Homo sapiens",
+      10,
+      0,
+      "v1",
+      false,
+      0,
+      3.29,
+      null
+    ],
+    [
+      "Homo sapiens",
+      10,
+      2,
+      "v2",
+      true,
+      304011,
+      54.15,
+      18000000.0
+    ],
+    [
+      "Homo sapiens",
+      10,
+      2,
+      "v1_e1k",
+      false,
+      0,
+      3.74,
+      null
+    ],
+    [
+      "Homo sapiens",
+      10,
+      2,
+      "v1",
+      false,
+      0,
+      3.38,
+      null
+    ],
+    [
+      "Homo sapiens",
+      20,
+      0,
+      "v2",
+      true,
+      460,
+      2.14,
+      80.0
+    ],
+    [
+      "Homo sapiens",
+      20,
+      0,
+      "v1_e1k",
+      true,
+      460,
+      3.82,
+      null
+    ],
+    [
+      "Homo sapiens",
+      20,
+      0,
+      "v1",
+      true,
+      460,
+      6.07,
+      null
+    ],
+    [
+      "Homo sapiens",
+      20,
+      2,
+      "v2",
+      true,
+      1566,
+      2.27,
+      2500.0
+    ],
+    [
+      "Homo sapiens",
+      20,
+      2,
+      "v1_e1k",
+      true,
+      460,
+      3.79,
+      null
+    ],
+    [
+      "Homo sapiens",
+      20,
+      2,
+      "v1",
+      true,
+      19492,
+      6.3,
+      null
+    ],
+    [
+      "Homo sapiens",
+      50,
+      0,
+      "v2",
+      true,
+      1,
+      5.12,
+      6.7e-11
+    ],
+    [
+      "Homo sapiens",
+      50,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      9.09,
+      null
+    ],
+    [
+      "Homo sapiens",
+      50,
+      0,
+      "v1",
+      true,
+      1,
+      35.04,
+      null
+    ],
+    [
+      "Homo sapiens",
+      50,
+      2,
+      "v2",
+      true,
+      28,
+      5.17,
+      2.1e-09
+    ],
+    [
+      "Homo sapiens",
+      50,
+      2,
+      "v1_e1k",
+      true,
+      203,
+      9.13,
+      null
+    ],
+    [
+      "Homo sapiens",
+      50,
+      2,
+      "v1",
+      true,
+      203,
+      35.08,
+      null
+    ],
+    [
+      "Homo sapiens",
+      100,
+      0,
+      "v2",
+      true,
+      1,
+      10.29,
+      2.1e-31
+    ],
+    [
+      "Homo sapiens",
+      100,
+      0,
+      "v1_e1k",
+      true,
+      1,
+      26.95,
+      null
+    ],
+    [
+      "Homo sapiens",
+      100,
+      0,
+      "v1",
+      true,
+      1,
+      221.16,
+      null
+    ],
+    [
+      "Homo sapiens",
+      100,
+      2,
+      "v2",
+      true,
+      2,
+      10.15,
+      6.6e-30
+    ],
+    [
+      "Homo sapiens",
+      100,
+      2,
+      "v1_e1k",
+      true,
+      81,
+      26.91,
+      null
+    ],
+    [
+      "Homo sapiens",
+      100,
+      2,
+      "v1",
+      true,
+      81,
+      221.22,
+      null
+    ]
+  ]
+}
