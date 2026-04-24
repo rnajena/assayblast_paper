@@ -1,0 +1,30 @@
+[
+  {
+    "name": "virus",
+    "label": "Influenzavirus A",
+    "long_label": "Influenzavirus A, H3N2 subtype",
+    "accession": "GCA_039834415.1",
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/039/834/415/GCA_039834415.1_ASM3983441v1/GCA_039834415.1_ASM3983441v1_genomic.fna.gz"
+  },
+  {
+    "name": "bacteria",
+    "label": "Staphylococcus aureus",
+    "long_label": "Staphylococcus aureus, refseq USA300-ISMMS1",
+    "accession": "GCF_000568455.1",
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/568/455/GCF_000568455.1_ASM56845v1/GCF_000568455.1_ASM56845v1_genomic.fna.gz"
+  },
+  {
+    "name": "yeast",
+    "label": "Candida albicans",
+    "long_label": "Candida albicans, refseq SC5314",
+    "accession": "GCF_000182965.3",
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/182/965/GCF_000182965.3_ASM18296v3/GCF_000182965.3_ASM18296v3_genomic.fna.gz"
+  },
+  {
+    "name": "human",
+    "label": "Homo sapiens",
+    "long_label": "Homo sapiens, T2T-CHM13v2.0",
+    "accession": "GCF_009914755.1",
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/009/914/755/GCF_009914755.1_T2T-CHM13v2.0/GCF_009914755.1_T2T-CHM13v2.0_genomic.fna.gz"
+  }
+]
