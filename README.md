@@ -1,4 +1,5 @@
 ### Code repository for the AssayBLAST v2 publication
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19738487.svg)](https://doi.org/10.5281/zenodo.19738487)
 
 This repository hosts results from the AssayBLAST v2 publication and code to reproduce these.
 
