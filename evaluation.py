@@ -121,7 +121,7 @@ def print_table():
             else:
                 return r'\xmark'
         def fmt_evalue(evalue):
-            if evalue < 1e-8 or evalue > 1e8:
+            if evalue < 1e-6 or evalue > 1e8:
                 return rf'{evalue:.1e}'.replace('+', '')
             elif evalue >= 10:
                 return rf'${evalue:_.0f}$'.replace('_', r'\,')

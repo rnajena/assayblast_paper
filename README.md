@@ -12,7 +12,7 @@ First, please install the necessary packages:
 ```bash
 conda create -n assayblast_paper "python=3.14" "blast=2.17.0" matplotlib numpy pandas seaborn scipy "biopython=1.85"
 conda activate assayblast_paper
-pip install "rnajena-sugar==1.0" "assay_blast==2.1"
+pip install "rnajena-sugar==1.0" "assay_blast==2.2"
 ```
 
 #### Create the example result tables (tables 2, 3)
