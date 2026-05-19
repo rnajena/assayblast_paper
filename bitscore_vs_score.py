@@ -17,21 +17,21 @@ TMP = '/tmp'
 
 
 def call_blast():
-    with open(f'{PATH}/primers.json') as f:
-        primers = json.load(f)
-    for olabel in primers:
-        for primer_name, primer in primers[olabel].items():
-            oname = primer_name.split('_')[1]
-            print(f'Run assayBLAST for {olabel} with {primer_name}...')
-            BioSeq(primer, id=primer_name).write(f"{TMP}/tmp_{primer_name}.fasta")
+    with open(f'{PATH}/queries.json') as f:
+        queries = json.load(f)
+    for olabel in queries:
+        for query_name, query in queries[olabel].items():
+            oname = query_name.split('_')[1]
+            print(f'Run assayBLAST for {olabel} with {query_name}...')
+            BioSeq(query, id=query_name).write(f"{TMP}/tmp_{query_name}.fasta")
             run_blast(
-                f'{TMP}/tmp_{primer_name}.fasta',
+                f'{TMP}/tmp_{query_name}.fasta',
                 [f'{PATH}/genome_{oname}.fasta'],
-                f'{PATH}/blast_bitscore_{primer_name}.tsv',
+                f'{PATH}/blast_bitscore_{query_name}.tsv',
                 db=f'{TMP}/db/{oname}', keep_db=True,
-                mismatch=2 if 'mm2' in primer_name else 0,
+                mismatch=2 if 'mm2' in query_name else 0,
                 max_target_seqs=1)
-            os.remove(f'{TMP}/tmp_{primer_name}.fasta')
+            os.remove(f'{TMP}/tmp_{query_name}.fasta')
 
 
 def _adapt_axis(df):
@@ -55,16 +55,16 @@ def plot_bitscore():
     for ft in fts:
         assert ft.meta._blast.mismatch == (2 if ft.name.endswith('mm2') else 0)
     for ft in fts:
-        ft.meta['primer length'] = ft.meta._blast.qlen
+        ft.meta['query length'] = ft.meta._blast.qlen
         ft.meta.mismatch = ft.meta._blast.mismatch
         ft.meta.organism = ft.name.split('_')[1]
-    df = fts.topandas(['organism', 'primer length', 'mismatch', 'score'])
+    df = fts.topandas(['organism', 'query length', 'mismatch', 'score'])
     df['bit score'] = df['score']
-    df['score'] = df.apply(lambda row: _score(row['primer length'], row['mismatch']), axis=1)
+    df['score'] = df.apply(lambda row: _score(row['query length'], row['mismatch']), axis=1)
     sns.relplot(df, x='score', y='bit score', hue='organism', style='organism', height=3, aspect=1.6)
     _adapt_axis(df)
     plt.savefig('fig_bitscore_vs_score_organisms.pdf')
-    sns.relplot(df, x='score', y='bit score', hue='primer length', style='mismatch',
+    sns.relplot(df, x='score', y='bit score', hue='query length', style='mismatch',
                 height=3, aspect=1.6, hue_norm=mpl.colors.LogNorm())
     _adapt_axis(df)
     plt.savefig('fig_bitscore_vs_score.pdf', bbox_inches='tight', pad_inches=0.05)
