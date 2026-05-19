@@ -20,46 +20,51 @@ TMP = 'data'
 
 
 def compare_versions(data=None):
-    with open(f'{PATH}/primers.json') as f:
-        primers = json.load(f)
+    with open(f'{PATH}/queries.json') as f:
+        queries = json.load(f)
     if data is None:
-        data = {'header': ['organism', 'plen', 'mismatch', 'version', 'success', 'nhits', 'time', 'evalue'],
+        data = {'header': ['organism', 'qlen', 'mismatch', 'version', 'success', 'nhits', 'time', 'evalue'],
                 'rows': []}
-    for olabel in primers:
-        for primer_name, primer in primers[olabel].items():
+    for olabel in queries:
+        for query_name, queryseq in queries[olabel].items():
             for mm in (0, 2):
-                oname = primer_name.split('_')[1]
-                if (oname == 'human' and len(primer) in (10, 20, 50, 100) or
-                        oname == 'yeast' and len(primer) in (10, 20, 50) or
-                        oname == 'bacteria' and len(primer) in (10, 20) or
-                        oname == 'virus' and len(primer) in (10, 20)) and 'mm2' not in primer_name:
-                    query = f'{{path}}/tmp_primer_{oname}_{primer_name}.fasta'
+                oname = query_name.split('_')[1]
+                if (oname == 'human' and len(queryseq) in (10, 20, 50, 100) or
+                        oname == 'yeast' and len(queryseq) in (10, 20, 50) or
+                        oname == 'bacteria' and len(queryseq) in (10, 20) or
+                        oname == 'virus' and len(queryseq) in (10, 20)) and 'mm2' not in query_name:
+                    query = f'{{path}}/tmp_query_{oname}_{query_name}.fasta'
                     genome = f'{{path}}/genome_{oname}.fasta'
-                    out = f'{PATH}/blast_evaluation_{{version}}_{primer_name}_mm{mm}.tsv'
-                    BioSeq(primer, id=f'{oname}_{primer_name}').write(query.format(path=PATH))
+                    out = f'{PATH}/blast_evaluation_{{version}}_{query_name}_mm{mm}.tsv'
+                    BioSeq(queryseq, id=f'primer_{oname}_{query_name}').write(query.format(path=PATH))
                     for version in ('v2', 'v1_e1k', 'v1'):
-                        print(f'Run assayBLAST {version} for {oname} with {primer_name}...')
+                        print(f'Run assayBLAST {version} for {oname} with {query_name}...')
                         outv = out.format(version=version)
-                        t0 = perf_counter()
-                        if version == 'v2':
-                            run_blast(
-                                query.format(path=PATH),
-                                [genome.format(path=PATH)],
-                                outv,
-                                db=f'{TMP}/db_tmp/{oname}', keep_db=True, mismatch=mm)
-                        else:
-                            # if os.path.exists(f'{TMP}/db_tmp'):
-                            #     shutil.rmtree(f'{TMP}/db_tmp')
-                            suf = version[2:]
-                            path = '../' + PATH
-                            call = f"python assayBLAST{suf}.py -q {query.format(path=path)} -db {TMP}/db_tmp/{oname} -m {mm} -g {genome.format(path=path)}"
-                            print(call)
-                            try:
-                                run(call.split(), check=True, cwd='AssayBLASTv1')
-                                shutil.copyfile('AssayBLASTv1/blast_results.tsv', outv)
-                            except subprocess.CalledProcessError as e:
-                                print(f"Error occurred while running {version}: {e}")
-                        time = round(perf_counter() - t0, 2)
+                        runtime = 0.
+                        num_runs = 0
+                        while runtime < 10:
+                            t0 = perf_counter()
+                            if version == 'v2':
+                                run_blast(
+                                    query.format(path=PATH),
+                                    [genome.format(path=PATH)],
+                                    outv,
+                                    db=f'{TMP}/db_tmp/{oname}', keep_db=True, mismatch=mm)
+                            else:
+                                # if os.path.exists(f'{TMP}/db_tmp'):
+                                #     shutil.rmtree(f'{TMP}/db_tmp')
+                                suf = version[2:]
+                                path = '../' + PATH
+                                call = f"python assayBLAST{suf}.py -q {query.format(path=path)} -db {TMP}/db_tmp/{oname} -m {mm} -g {genome.format(path=path)}"
+                                print(call)
+                                try:
+                                    run(call.split(), check=True, cwd='AssayBLASTv1')
+                                    shutil.copyfile('AssayBLASTv1/blast_results.tsv', outv)
+                                except subprocess.CalledProcessError as e:
+                                    print(f"Error occurred while running {version}: {e}")
+                            runtime += perf_counter() - t0
+                            num_runs += 1
+                        runtime_mean = round(runtime / num_runs, 2)
                         if version == 'v2':
                             fts = read_fts(outv)
                             _preprocess_hits(fts)  # correctly assign number of mismatches
@@ -81,8 +86,8 @@ def compare_versions(data=None):
                                 nhits = -1
                                 success = False
                             evalue = None
-                        print(f'{version} finished in {time} seconds, success: {success}')
-                        data['rows'].append((olabel, len(primer), mm, version, success, nhits, time, evalue))
+                        print(f'{version} finished in {runtime_mean} seconds, success: {success}')
+                        data['rows'].append((olabel, len(queryseq), mm, version, success, nhits, runtime_mean, evalue))
                         with open(f'{PATH}/evaluation.json', 'w') as f:
                             json.dump(data, f, indent=2)
                     os.remove(query.format(path=PATH))
@@ -99,14 +104,14 @@ def print_table():
     evaluev2 = {}
     nhitsv2 = {}
     for row in data['rows']:
-        olabel, plen, mismatch, version, success, nhits, time, evalue = row
-        results[olabel, plen, mismatch][version] = (success, nhits, time, evalue)
+        olabel, qlen, mismatch, version, success, nhits, time, evalue = row
+        results[olabel, qlen, mismatch][version] = (success, nhits, time, evalue)
         if evalue:
-            evaluev2[olabel, plen, mismatch] = evalue
-            nhitsv2[olabel, plen, mismatch] = nhits
+            evaluev2[olabel, qlen, mismatch] = evalue
+            nhitsv2[olabel, qlen, mismatch] = nhits
     # Sort by e-value
     results = dict(sorted(results.items(), key=lambda item: evaluev2.get(item[0])))
-    for (olabel, plen, mismatch), vresults in results.items():
+    for (olabel, qlen, mismatch), vresults in results.items():
         def tstr(time):
             if time < 10:
                 d = 2
@@ -116,7 +121,7 @@ def print_table():
                 d = 0
             return rf'${time:.{d}f}\,\mathrm{{s}}$'
         def mark(nhits):
-            if nhits == nhitsv2[olabel, plen, mismatch]:
+            if nhits == nhitsv2[olabel, qlen, mismatch]:
                 return r'\cmark'
             else:
                 return r'\xmark'
@@ -128,8 +133,8 @@ def print_table():
             else:
                 return rf'${evalue:.2g}$'
 
-        print(rf'\textit{{{olabel}}} & ${plen}\,\mathrm{{nt}}$ & {mismatch} & ' +
-                fmt_evalue(evaluev2[olabel, plen, mismatch]) + ' & ' +
+        print(rf'\textit{{{olabel}}} & ${qlen}\,\mathrm{{nt}}$ & {mismatch} & ' +
+                fmt_evalue(evaluev2[olabel, qlen, mismatch]) + ' & ' +
                 ' & '.join(rf'{nhits} & {mark(nhits)} & {tstr(time)}'
                             for version, (success, nhits, time, evalue) in vresults.items()) +
                 r'\\')
