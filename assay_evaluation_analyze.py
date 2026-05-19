@@ -56,33 +56,39 @@ def map_probe_names(syn, exp):
     return m
 
 
-def plot_confusion_matrix(syn, exp):
-    syn_pos = syn.apply(lambda x: x.str.startswith('lin'))
-    exp_pos = exp.apply(lambda x: x > 0.5)
+def plot_confusion_matrix(assayblastv2_results=None, confussion_matrix=None, label='v2'):
+    if assayblastv2_results:
+        syn, exp = assayblastv2_results
+        syn_pos = syn.apply(lambda x: x.str.startswith('lin'))
+        exp_pos = exp.apply(lambda x: x > 0.5)
 
-    print('number of values:' , exp.size)
-    pp = (exp_pos & syn_pos).values.sum()
-    nn = (~exp_pos & ~syn_pos).values.sum()
-    pn = (exp_pos & ~syn_pos).values.sum()
-    np = (~exp_pos & syn_pos).values.sum()
-
+        print('number of values:' , exp.size)
+        pp = (exp_pos & syn_pos).values.sum()
+        nn = (~exp_pos & ~syn_pos).values.sum()
+        pn = (exp_pos & ~syn_pos).values.sum()
+        np = (~exp_pos & syn_pos).values.sum()
+    else:
+        pp, pn, np, nn = confussion_matrix
+    print(f'Confusion matrix for {label}:')
     print('         syn')
     print('         + -')
     print('exp +', pp, pn)
     print('    -', np, nn)
 
-    plt.figure(figsize=(3, 3))
+    plt.figure(figsize=(3, 3) if label=='v2' else (1.5, 1.5))
     plt.imshow([[pp, pn], [np, nn]], cmap='Blues', vmin=0)
     plt.annotate(pp, (0, 0,), ha='center', va='center')
     plt.annotate(pn, (1, 0,), ha='center', va='center')
     plt.annotate(np, (0, 1,), ha='center', va='center')
     plt.annotate(nn, (1, 1,), ha='center', va='center', color='w')
-    plt.colorbar(shrink=0.6)
-    plt.xticks([0, 1], ['positive', 'negative'])
-    plt.yticks([0, 1], ['positive', 'negative'], rotation=90, va='center')
-    plt.xlabel('AssayBLAST v2')
-    plt.ylabel('Microarray')
-    plt.savefig('fig_confusion_matrix.pdf', bbox_inches='tight', pad_inches=0.02)
+    if label=='v2':
+        plt.colorbar(shrink=0.6)
+    plt.xticks([0, 1], ['positive', 'negative'], size=10 if label=='v2' else 8)
+    plt.yticks([0, 1], ['positive', 'negative'], size=10 if label=='v2' else 8, rotation=90, va='center')
+    plt.xlabel(f'AssayBLAST {label}', size=10 if label=='v2' else 8)
+    plt.ylabel('Microarray', size=10 if label=='v2' else 8)
+    plt.annotate('a)' if label=='v2' else 'b)', (0, 1), xytext=(-30, 5), xycoords='axes fraction', textcoords='offset points', ha='left', va='top', fontsize=12)
+    plt.savefig(f'fig_confusion_matrix_{label}.pdf', bbox_inches='tight', pad_inches=0.02)
 
 
 if __name__ == '__main__':
@@ -99,4 +105,6 @@ if __name__ == '__main__':
     # check that only linear or none
     assert syn.apply(lambda x: x.str.startswith('exp') + x.str.startswith('const')).values.sum() == 0
 
-    plot_confusion_matrix(syn, exp)
+    plot_confusion_matrix(assayblastv2_results=(syn, exp), label='v2')
+    cm_v1 = (pp, pn, np, nn) = (1255, 51, 49, 2665)
+    plot_confusion_matrix(confussion_matrix=cm_v1, label='v1')
