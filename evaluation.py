@@ -104,6 +104,7 @@ def _fmt_evalue(evalue):
 def print_table():
     with open(f'{PATH}/evaluation.json') as f:
         data = json.load(f)
+    print('\nevaluation table 4')
     print(r'\begin{tabular}{lrrr rcr rcr rcr}')
     print(r'\toprule')
     print('% ' + ' '.join(data['header']))
@@ -186,8 +187,8 @@ def _add_evalue_v1(fts):
             f"-outfmt '{OUTFMT7}' -dust no -out {TMP}/{out}")
     os.system(call)
     fts2 = read_fts(f'{TMP}/{out}')
-    print(f'all potential v1 hits')
-    print(fts2.tostr(w=0))
+    # print(f'all potential v1 hits')
+    # print(fts2.tostr(w=0))
     # only return the features that are actually reported in v1
     fts2 = _filter_fts(fts2, fts)
     fts.data = fts2.data
@@ -243,7 +244,7 @@ def analyze_yeast_20nt_mm2():
     fts_v2.sort()
     fts_v1.sort()
     _add_evalue_v1(fts_v1)
-    print('v2 hits features')
+    print('\nv2 hits features')
     print(fts_v2)
     print('v1 hits features')
     print(fts_v1)
@@ -253,7 +254,7 @@ def analyze_yeast_20nt_mm2():
     print(seqs[fts_v2])
     print('v1 hits sequences')
     print(seqs[fts_v1])
-    print()
+    print('\nhits table 4')
     # merge features
     fts = _merge_fts(fts_v2, fts_v1)
     fancy_seqs = _add_aliscores(fts, seqs[fts], query)
