@@ -35,7 +35,7 @@ python prepare_genomes.py
 python bitscore_vs_score.py
 ```
 
-#### Comparison to AssayBLAST v1.0 (table 4)
+#### Comparison to AssayBLAST v1.0 (tables 4, 5)
 
 This section requires the genomes downloaded in the previous section. We download AssayBLAST v1.0 from GitHub and create a modified version with a fixed E-value of 1000. The script `evaluation.py` runs the different AssayBLAST versions with various primers and organisms and generates the comparison table.
 
