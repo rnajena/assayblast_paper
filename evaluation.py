@@ -129,15 +129,18 @@ def print_table():
             else:
                 d = 0
             return rf'${time:.{d}f}\,\mathrm{{s}}$'
-        def mark(nhits):
+        def mark(nhits, version):
             if nhits == nhitsv2[olabel, qlen, mismatch]:
+                if olabel == 'Candida albicans' and qlen == 20 and mismatch == 2 and version=='v1':
+                    # both versions find 4 hits, but v1 finds one incorrect hit with gaps
+                    return r'\xmark'
                 return r'\cmark'
             else:
                 return r'\xmark'
-
-        print(rf'\textit{{{olabel}}} & ${qlen}\,\mathrm{{nt}}$ & {mismatch} & ' +
+        asterisk = '$^*$' if olabel == 'Candida albicans' and qlen == 20 and mismatch == 2 else ''
+        print(rf'{asterisk}\textit{{{olabel}}} & ${qlen}\,\mathrm{{nt}}$ & {mismatch} & ' +
                 _fmt_evalue(evaluev2[olabel, qlen, mismatch]) + ' & ' +
-                ' & '.join(rf'{nhits} & {mark(nhits)} & {tstr(time)}'
+                ' & '.join(rf'{nhits} & {mark(nhits, version)} & {tstr(time)}'
                             for version, (success, nhits, time, evalue) in vresults.items()) +
                 r'\\')
     print(r'\bottomrule')
