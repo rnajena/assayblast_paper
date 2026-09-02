@@ -3,6 +3,8 @@
 
 This repository hosts results from the AssayBLAST v2 publication and code to reproduce these.
 
+Eulenfeld T, Collatz M, Braun SD, Ehricht R (2026), AssayBLAST v2: Major update improving reliability and reporting of the *in silico* analysis of molecular multi-parameter assays, *BMC Bioinformatics* 27, 205, doi:[10.1186/s12859-026-06595-w](https://doi.org/10.1186/s12859-026-06595-w). [[pdf](https://www.db-thueringen.de/servlets/MCRFileNodeServlet/dbt_derivate_00072626/AssayBLAST2_Eulenfeld_et_al.pdf)]
+
 Accession numbers can be found in `data/organisms.json` and `assay/microarray_results.txt`.
 
 Prerequisites: conda installation using conda-forge and bioconda channels.
